@@ -1,5 +1,4 @@
 let allow_soft_sign_checkbox = document.getElementById('allow-soft-sign');
-let allow_double_vowel_iotation_checkbox = document.getElementById('allow-double-vowel-iotation');
 let allow_affricate_conversion_checkbox = document.getElementById('allow-affricate-conversion');
 let allow_smart_capitalization_checkbox = document.getElementById('allow-smart-capitalization');
 
@@ -81,11 +80,6 @@ allow_soft_sign_checkbox.onchange = (e) => {
 	allow_soft_sign = allow_soft_sign_checkbox.checked;
 	autoupdate_text();
 }
-allow_double_vowel_iotation_checkbox.onchange = (e) => {
-	
-	allow_double_vowel_iotation = allow_double_vowel_iotation_checkbox.checked;
-	autoupdate_text();
-}
 allow_affricate_conversion_checkbox.onchange = (e) => {
 	
 	allow_affricate_conversion = allow_affricate_conversion_checkbox.checked;
@@ -98,7 +92,6 @@ allow_smart_capitalization_checkbox.onchange = (e) => {
 }
 
 allow_soft_sign = allow_soft_sign_checkbox.checked;
-allow_double_vowel_iotation = allow_double_vowel_iotation_checkbox.checked;
 allow_affricate_conversion = allow_affricate_conversion_checkbox.checked;
 allow_smart_capitalization = allow_smart_capitalization_checkbox.checked;
 
