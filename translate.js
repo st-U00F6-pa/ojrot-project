@@ -106,7 +106,8 @@ function latin_to_cyrillic_word(word, do_capitalization = false) {
 
 	function is_vowel(character) {
 
-		return (latin_vowels.includes(character));
+		if (character === undefined) return false;
+		return (latin_vowels.includes(character.toLowerCase()));
 	}
 	function can_be_iotated(vowel) {
 		
@@ -131,6 +132,12 @@ function latin_to_cyrillic_word(word, do_capitalization = false) {
 		
 		return character.toUpperCase() == character;
 	}
+	function matches(shift, character) {
+
+		if (characters[index + shift] === undefined) return false;
+
+		return characters[index + shift].toLowerCase() == character;
+	}
 
 	for (index = 0; index < word_length; index++) {
 
@@ -143,17 +150,17 @@ function latin_to_cyrillic_word(word, do_capitalization = false) {
 		}
 		else if (can_be_iotated(character)) {
 			
-			if (index == 1 && characters[index - 1] == "j") {
+			if (index == 1 && matches(-1, "j")) {
 				
 				output = output.slice(0, -1);
 				output += uppercase ? iotate(character).toUpperCase() : iotate(character);
 			}
-			else if (allow_double_vowel_iotation && is_vowel(characters[index - 2]) && characters[index - 1] == "j") {
+			else if (allow_double_vowel_iotation && is_vowel(characters[index - 2]) && matches(-1, "j")) {
 
 				output = output.slice(0, -1);
 				output += uppercase ? iotate(character).toUpperCase() : iotate(character);
 			}
-			else if (allow_soft_sign && !is_vowel(characters[index - 2]) && characters[index - 1] == "j") {
+			else if (allow_soft_sign && !is_vowel(characters[index - 2]) && matches(-1, "j")) {
 
 				output = output.slice(0, -1);
 				output += uppercase ? "Ь" : "ь";
@@ -164,12 +171,12 @@ function latin_to_cyrillic_word(word, do_capitalization = false) {
 				output += uppercase ? latin_to_cyrillic_lookup[character].toUpperCase() : latin_to_cyrillic_lookup[character];
 			}
 		}
-		else if (allow_affricate_conversion && character == 'c' && characters[index - 1] == 'ş') {
+		else if (allow_affricate_conversion && character == 'c' && matches(-1, 'ş')) {
 
 			output = output.slice(0, -1);
 			output += uppercase ? 'Щ' : 'щ';
 		}
-		else if (allow_affricate_conversion && character == 's' && characters[index - 1] == 't') {
+		else if (allow_affricate_conversion && character == 's' && matches(-1, 't')) {
 
 			output = output.slice(0, -1);
 			output += uppercase ? 'Ц' : 'ц';
@@ -193,30 +200,37 @@ function cyrillic_to_latin_word(word, do_capitalization = false) {
 
 	function is_vowel(character) {
 
-		return (cyrillic_vowels.includes(character));
+		if (character === undefined) return false;
+		return (cyrillic_vowels.includes(character.toLowerCase()));
 	}
 	function is_iotated(vowel) {
 		
-		return (cyrillic_iotatable.includes(vowel))
+		return (cyrillic_iotatable.includes(vowel.toLowerCase()))
 	}
 	function de_iotate(vowel) {
 
-		if (vowel == "я") {
+		if (vowel.toLowerCase() == "я") {
 			return 'а';
 		}
-		if (vowel == "ё") {
+		if (vowel.toLowerCase() == "ё") {
 			return 'о';
 		}
-		if (vowel == "ю") {
+		if (vowel.toLowerCase() == "ю") {
 			return 'у';
 		}
-		if (vowel == "е") {
+		if (vowel.toLowerCase() == "е") {
 			return 'е';
 		}
 	}
 	function is_uppercase(character) {
 		
 		return character.toUpperCase() == character;
+	}
+	function matches(shift, character) {
+
+		if (characters[index + shift] === undefined) return false;
+
+		return characters[index + shift].toLowerCase() == character;
 	}
 
 	for (index = 0; index < word_length; index++) {
@@ -236,7 +250,7 @@ function cyrillic_to_latin_word(word, do_capitalization = false) {
 				output += uppercase ? "J" : "j";
 				output += uppercase ? (cyrillic_to_latin_lookup[de_iotate(character)]).toUpperCase() : cyrillic_to_latin_lookup[de_iotate(character)];
 			}
-			else if (characters[index - 1] == "й") {
+			else if (matches(-1, "й")) {
 				
 				output += uppercase ? (cyrillic_to_latin_lookup[de_iotate(character)]).toUpperCase() : cyrillic_to_latin_lookup[de_iotate(character)];
 			} 
@@ -297,7 +311,7 @@ function cyrillic_translate(input) {
 
 			let translated_word = cyrillic_to_latin_word(word, word_has_capitals && allow_smart_capitalization);
 
-			if (word_is_capitalized) {
+			if (word_is_capitalized && allow_smart_capitalization) {
 				
 				output += translated_word[0].toUpperCase() + translated_word.slice(1);
 			}
@@ -313,7 +327,7 @@ function cyrillic_translate(input) {
 	}
 	let translated_word = cyrillic_to_latin_word(word, word_has_capitals && allow_smart_capitalization);
 
-	if (word_is_capitalized) {
+	if (word_is_capitalized && allow_smart_capitalization) {
 		
 		output += translated_word[0].toUpperCase() + translated_word.slice(1);
 	}
@@ -353,12 +367,25 @@ function latin_translate(input) {
 			word += character;
 		}
 		else {
-			output += latin_to_cyrillic_word(word, word_has_capitals && allow_smart_capitalization);
+
+			let translated_word = latin_to_cyrillic_word(word, word_has_capitals && allow_smart_capitalization);
+			
+			if (word_is_capitalized && allow_smart_capitalization) {
+				
+				output += translated_word[0].toUpperCase() + translated_word.slice(1);
+			}
+			else output += translated_word;
 			word = "";
 			output += character;
 		}
 	}
-	output += latin_to_cyrillic_word(word, word_has_capitals && allow_smart_capitalization);
+	let translated_word = latin_to_cyrillic_word(word, word_has_capitals && allow_smart_capitalization);
+	
+	if (word_is_capitalized && allow_smart_capitalization) {
+		
+		output += translated_word[0].toUpperCase() + translated_word.slice(1);
+	}
+	else output += translated_word;
 
 	return output;
 }
