@@ -245,11 +245,11 @@ function cyrillic_to_latin_word(word, do_capitalization = false) {
 				output += uppercase ? (cyrillic_to_latin_lookup[character]).toUpperCase() : cyrillic_to_latin_lookup[character];
 			}
 		}
-		else if (allow_soft_sign && character == 'ь' && !is_vowel(characters[index - 1]) && is_vowel(characters[index + 1])) {
+		else if (character == 'ь' && !is_vowel(characters[index - 1]) && is_vowel(characters[index + 1])) {
 
 			output += uppercase ? "J" : "j";
 		}
-		else if (allow_soft_sign && character == 'ъ') {
+		else if (character == 'ъ') {
 
 			output += uppercase ? "J" : "j";
 		}
