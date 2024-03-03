@@ -17,12 +17,14 @@ cyrillic_preview_checkbox.onchange = (e) => {
 	latin_preview_checkbox.checked = false;
 	toggle_buttons();
 	autoupdate_text();
+	click();
 }
 latin_preview_checkbox.onchange = (e) => {
 
 	cyrillic_preview_checkbox.checked = false;
 	toggle_buttons();
 	autoupdate_text();
+	click();
 }
 function toggle_buttons() {
 
@@ -48,6 +50,18 @@ function autoupdate_text() {
 		cyrillic_textarea.value = latin_translate(latin_textarea.value);
 	}
 }
+function click() {
+
+	let sound = new Audio('click.wav');
+	sound.loop = false;
+	sound.play();
+}
+function ding() {
+
+	let sound = new Audio('ding.wav');
+	sound.loop = false;
+	sound.play();
+}
 
 cyrillic_textarea.oninput = (e) => {
 
@@ -67,28 +81,33 @@ cyrillic_translate_button.onclick = () => {
 	let text = cyrillic_textarea.value;
 
 	latin_textarea.value = cyrillic_translate(text);
+	ding();
 }
 latin_translate_button.onclick = () => {
 
 	let text = latin_textarea.value;
 
 	cyrillic_textarea.value = latin_translate(text);
+	ding();
 }
 
 allow_soft_sign_checkbox.onchange = (e) => {
 	
 	allow_soft_sign = allow_soft_sign_checkbox.checked;
 	autoupdate_text();
+	click();
 }
 allow_affricate_conversion_checkbox.onchange = (e) => {
 	
 	allow_affricate_conversion = allow_affricate_conversion_checkbox.checked;
 	autoupdate_text();
+	click();
 }
 allow_smart_capitalization_checkbox.onchange = (e) => {
 	
 	allow_smart_capitalization = allow_smart_capitalization_checkbox.checked;
 	autoupdate_text();
+	click();
 }
 
 allow_soft_sign = allow_soft_sign_checkbox.checked;

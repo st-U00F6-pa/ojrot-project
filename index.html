@@ -19,6 +19,32 @@ input[type=button] {
 	font-size: 100%;
 	font-family: serif;
 }
+
+input[type=checkbox] {
+	display:none;
+	user-select: none;
+}
+input[type=checkbox] + label
+{
+	background: url("switch_up.png") center center/contain no-repeat;
+	height: 24px;
+	width: 24px;
+	display:inline-block;
+	padding: 0 0 0 0px;
+	user-select: none;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+input[type=checkbox]:checked + label
+{
+	background: url("switch_down.png") center center/contain no-repeat;
+	height: 24px;
+	width: 24px;
+	display:inline-block;
+	padding: 0 0 0 0px;
+	user-select: none;
+}
+
 hr {
 	opacity: 20%;
 }
@@ -42,6 +68,7 @@ hr {
 textarea {
 	resize: vertical;
 	font-family: serif;
+	min-height: 240px;
 }
 
 .general-settings {
@@ -49,30 +76,37 @@ textarea {
 	list-style-type : none;
 	padding: 0;
 }
+.setting {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 4px;
+}
 
 </style>
 <body>
 		
-	<h1>Altai Project v 1.4</h1>
+	<h1>Altai Language Translator Assistant</h1>
 
 	<ul class="general-settings">
 
-		<li>
+		<li class="setting">
 		<input type="checkbox" id="allow-soft-sign" name="allow-soft-sign" />
-    	<label for="allow-soft-sign">Enable soft/hard sign</label>
+    	<label for="allow-soft-sign"></label>
+		<span>Enable soft/hard sign</span>
 		</li>
-		<li>
+		<li class="setting">
 		<input type="checkbox" id="allow-affricate-conversion" name="allow-affricate-conversion" />
-    	<label for="allow-affricate-conversion">Enable conversion of affricates from latin to cyrillic</label>
+    	<label for="allow-affricate-conversion"></label>
+		<span>Enable conversion of affricates from latin to cyrillic</span>
 		</li>
-		<li>
+		<li class="setting">
 		<input type="checkbox" id="allow-smart-capitalization" name="allow-smart-capitalization" />
-    	<label for="allow-smart-capitalization">Enable smart capitalization</label>
+    	<label for="allow-smart-capitalization"></label>
+		<span>Enable smart capitalization</span>
 		</li>
 
 	</ul>
-
-	<hr>
 
 	<div class="editor">
 
@@ -81,17 +115,21 @@ textarea {
 
 		<div class="cyrillic-settings">
 
-			<input type="checkbox" id="cyrillic-live-preview" name="cyrillic-live-preview" />
-	    	<label for="cyrillic-live-preview">Enable live translation from cyrillic</label>
-			<br>
+			<div class="setting">
+				<input type="checkbox" id="cyrillic-live-preview" name="cyrillic-live-preview" />
+				<label for="cyrillic-live-preview"></label>
+				<span>Enable live translation from cyrillic</span>
+			</div>
 			<input type="button" id="translate-cyrillic" value="Translate" />
 
 		</div>
 		<div class="latin-settings">
 			
-			<input type="checkbox" id="latin-live-preview" name="latin-live-preview" />
-	    	<label for="latin-live-preview">Enable live translation from latin</label>
-			<br>
+			<div class="setting">
+				<input type="checkbox" id="latin-live-preview" name="latin-live-preview" />
+				<label for="latin-live-preview"></label>
+				<span>Enable live translation from latin</span>
+			</div>
 			<input type="button" id="translate-latin" value="Translate" />
 
 		</div>
