@@ -48,8 +48,8 @@ textarea {
 
 .general-settings {
 
-	column-count: 2;
-	display: inline-block;
+	list-style-type : none;
+	padding: 0;
 }
 
 </style>
@@ -57,18 +57,22 @@ textarea {
 		
 	<h1>Altai Project v 1.4</h1>
 
-	<div class="general-settings">
+	<ul class="general-settings">
 
+		<li>
 		<input type="checkbox" id="allow-soft-sign" name="allow-soft-sign" />
     	<label for="allow-soft-sign">Enable soft/hard sign</label>
-		<br>
+		</li>
+		<li>
 		<input type="checkbox" id="allow-affricate-conversion" name="allow-affricate-conversion" />
     	<label for="allow-affricate-conversion">Enable conversion of affricates from latin to cyrillic</label>
-		<br>
+		</li>
+		<li>
 		<input type="checkbox" id="allow-smart-capitalization" name="allow-smart-capitalization" />
     	<label for="allow-smart-capitalization">Enable smart capitalization</label>
+		</li>
 
-	</div>
+	</ul>
 
 	<hr>
 
