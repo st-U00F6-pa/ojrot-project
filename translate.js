@@ -311,7 +311,7 @@ function cyrillic_translate(input) {
 
 			let translated_word = cyrillic_to_latin_word(word, word_has_capitals && allow_smart_capitalization);
 
-			if (word_is_capitalized && allow_smart_capitalization) {
+			if (word != '' && word_is_capitalized && allow_smart_capitalization) {
 				
 				output += translated_word[0].toUpperCase() + translated_word.slice(1);
 			}
@@ -327,7 +327,7 @@ function cyrillic_translate(input) {
 	}
 	let translated_word = cyrillic_to_latin_word(word, word_has_capitals && allow_smart_capitalization);
 
-	if (word_is_capitalized && allow_smart_capitalization) {
+	if (word != '' && word_is_capitalized && allow_smart_capitalization) {
 		
 		output += translated_word[0].toUpperCase() + translated_word.slice(1);
 	}
@@ -370,18 +370,21 @@ function latin_translate(input) {
 
 			let translated_word = latin_to_cyrillic_word(word, word_has_capitals && allow_smart_capitalization);
 			
-			if (word_is_capitalized && allow_smart_capitalization) {
+			if (word != '' && word_is_capitalized && allow_smart_capitalization) {
 				
 				output += translated_word[0].toUpperCase() + translated_word.slice(1);
 			}
 			else output += translated_word;
+			
 			word = "";
+			word_is_capitalized = false;
+			word_has_capitals = false;
 			output += character;
 		}
 	}
 	let translated_word = latin_to_cyrillic_word(word, word_has_capitals && allow_smart_capitalization);
 	
-	if (word_is_capitalized && allow_smart_capitalization) {
+	if (word != '' && word_is_capitalized && allow_smart_capitalization) {
 		
 		output += translated_word[0].toUpperCase() + translated_word.slice(1);
 	}
