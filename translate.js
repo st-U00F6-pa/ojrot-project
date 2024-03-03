@@ -5,7 +5,7 @@ let allow_smart_capitalization = false;
 
 const latin_characters = [
 	'a', 'o', 'e', 'u', 'ө', 'y', 'i', 'ь',
-	'в', 'v', 'g', 'd', 'ç', 'ƶ', 'z',
+	'b', 'v', 'g', 'd', 'ç', 'ƶ', 'z',
 	'j', 'k', 'l', 'm', 'n', 'p', 'r',
 	's', 't', 'f', 'x', 'c', 'ş', 'ꞑ'
 ]
@@ -333,9 +333,11 @@ function cyrillic_translate(input) {
 	}
 	else output += translated_word;
 
-	return output;
+	return output.replace('b', 'ʙ');
 }
 function latin_translate(input) {
+
+	input = input.replace('ʙ', 'b');
 
 	let output = "";
 
@@ -375,7 +377,7 @@ function latin_translate(input) {
 				output += translated_word[0].toUpperCase() + translated_word.slice(1);
 			}
 			else output += translated_word;
-			
+
 			word = "";
 			word_is_capitalized = false;
 			word_has_capitals = false;
