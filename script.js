@@ -17,11 +17,13 @@ cyrillic_preview_checkbox.onchange = (e) => {
 
 	latin_preview_checkbox.checked = false;
 	toggle_buttons();
+	autoupdate_text();
 }
 latin_preview_checkbox.onchange = (e) => {
 
 	cyrillic_preview_checkbox.checked = false;
 	toggle_buttons();
+	autoupdate_text();
 }
 function toggle_buttons() {
 
