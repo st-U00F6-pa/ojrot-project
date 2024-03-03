@@ -333,11 +333,11 @@ function cyrillic_translate(input) {
 	}
 	else output += translated_word;
 
-	return output.replace('b', 'ʙ');
+	return output.replaceAll('b', 'ʙ');
 }
 function latin_translate(input) {
 
-	input = input.replace('ʙ', 'b');
+	input = input.replaceAll('ʙ', 'b');
 
 	let output = "";
 
