@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<script src="translate.js"></script>
+	<script defer src="script.js"></script>
+</head>
+<style>
+
+html {
+	font-family : sans-serif;
+}
+div > * {	
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+input[type=button] {
+	padding-left: 12px;
+	padding-right: 12px;
+	font-size: 100%;
+}
+hr {
+	opacity: 20%;
+}
+.editor {  
+	display: grid;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: min-content 1fr;
+	gap: 0px 0px;
+	grid-auto-flow: row;
+	grid-template-areas:
+		"cyrillic-textarea latin-textarea"
+		"cyrillic-settings latin-settings";
+}
+
+.cyrillic-settings { grid-area: cyrillic-settings; }
+.latin-settings { grid-area: latin-settings; }
+
+.cyrillic-textarea { grid-area: cyrillic-textarea; }
+.latin-textarea { grid-area: latin-textarea; }
+
+textarea {
+	resize: vertical;
+	font-family: sans-serif;
+}
+
+.general-settings {
+
+	column-count: 2;
+	display: inline-block;
+}
+
+</style>
+<body>
+		
+	<h1>Altai Project v 1.4</h1>
+
+	<div class="general-settings">
+
+		<input type="checkbox" id="allow-soft-sign" name="allow-soft-sign" />
+    	<label for="allow-soft-sign">Enable soft/hard sign</label>
+		<br>
+		<input type="checkbox" id="allow-double-vowel-iotation" name="allow-double-vowel-iotation" />
+    	<label for="allow-double-vowel-iotation">Enable iotation for vowels that follow other vowels</label>
+		<br>
+		<input type="checkbox" id="allow-affricate-conversion" name="allow-affricate-conversion" />
+    	<label for="allow-affricate-conversion">Enable conversion of affricates from latin to cyrillic</label>
+		<br>
+		<input type="checkbox" id="allow-smart-capitalization" name="allow-smart-capitalization" />
+    	<label for="allow-smart-capitalization">Enable smart capitalization</label>
+
+	</div>
+
+	<hr>
+
+	<div class="editor">
+
+		<textarea class="cyrillic-textarea" spellcheck="false" id="cyrillic-textarea"></textarea>
+		<textarea class="latin-textarea" spellcheck="false" id="latin-textarea"></textarea>
+
+		<div class="cyrillic-settings">
+
+			<input type="checkbox" id="cyrillic-live-preview" name="cyrillic-live-preview" />
+	    	<label for="cyrillic-live-preview">Enable live translation from cyrillic</label>
+			<br>
+			<input type="button" id="translate-cyrillic" value="Translate" />
+
+		</div>
+		<div class="latin-settings">
+			
+			<input type="checkbox" id="latin-live-preview" name="latin-live-preview" />
+	    	<label for="latin-live-preview">Enable live translation from latin</label>
+			<br>
+			<input type="button" id="translate-latin" value="Translate" />
+
+		</div>
+
+	</div>
+
+</body>
+</html>
