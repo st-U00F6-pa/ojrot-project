@@ -5,7 +5,7 @@ let allow_smart_capitalization = false;
 
 const latin_characters = [
 	'a', 'o', 'e', 'u', 'ө', 'y', 'i', 'ь',
-	'b', 'v', 'g', 'd', 'ç', 'ƶ', 'z',
+	'в', 'v', 'g', 'd', 'ç', 'ƶ', 'z',
 	'j', 'k', 'l', 'm', 'n', 'p', 'r',
 	's', 't', 'f', 'x', 'c', 'ş', 'ꞑ'
 ]
