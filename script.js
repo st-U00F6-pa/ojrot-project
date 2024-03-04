@@ -11,6 +11,7 @@ let latin_translate_button = document.getElementById('translate-latin');
 let cyrillic_textarea = document.getElementById("cyrillic-textarea");
 let latin_textarea = document.getElementById("latin-textarea");
 
+const disable_sound = true;
 
 cyrillic_preview_checkbox.onchange = (e) => {
 
@@ -52,11 +53,15 @@ function autoupdate_text() {
 }
 function click() {
 
+	if (disable_sound) return;
+
 	let sound = new Audio('click.wav');
 	sound.loop = false;
 	sound.play();
 }
 function ding() {
+	
+	if (disable_sound) return;
 
 	let sound = new Audio('ding.wav');
 	sound.loop = false;
