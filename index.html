@@ -27,7 +27,7 @@ input[type=checkbox] {
 }
 input[type=checkbox] + label
 {
-	background: url("switch_up.png") center center/contain no-repeat;
+	background: url("switch_down.png") center center/contain no-repeat;
 	height: 24px;
 	width: 24px;
 	display:inline-block;
@@ -38,7 +38,7 @@ input[type=checkbox] + label
 }
 input[type=checkbox]:checked + label
 {
-	background: url("switch_down.png") center center/contain no-repeat;
+	background: url("switch_up.png") center center/contain no-repeat;
 	height: 24px;
 	width: 24px;
 	display:inline-block;
@@ -94,17 +94,12 @@ textarea {
 		<li class="setting">
 		<input type="checkbox" id="allow-soft-sign" name="allow-soft-sign" />
     	<label for="allow-soft-sign"></label>
-		<span>Enable soft/hard sign</span>
+		<span>Convert Yers</span>
 		</li>
 		<li class="setting">
 		<input type="checkbox" id="allow-affricate-conversion" name="allow-affricate-conversion" />
     	<label for="allow-affricate-conversion"></label>
-		<span>Enable conversion of affricates from latin to cyrillic</span>
-		</li>
-		<li class="setting">
-		<input type="checkbox" id="allow-smart-capitalization" name="allow-smart-capitalization" />
-    	<label for="allow-smart-capitalization"></label>
-		<span>Enable smart capitalization</span>
+		<span>Convert Affricates</span>
 		</li>
 
 	</ul>
@@ -119,7 +114,7 @@ textarea {
 			<div class="setting">
 				<input type="checkbox" id="cyrillic-live-preview" name="cyrillic-live-preview" />
 				<label for="cyrillic-live-preview"></label>
-				<span>Enable live translation from cyrillic</span>
+				<span>Live translation from Cyrillic</span>
 			</div>
 			<input type="button" id="translate-cyrillic" value="Translate" />
 
@@ -129,7 +124,7 @@ textarea {
 			<div class="setting">
 				<input type="checkbox" id="latin-live-preview" name="latin-live-preview" />
 				<label for="latin-live-preview"></label>
-				<span>Enable live translation from latin</span>
+				<span>Live translation from Latin</span>
 			</div>
 			<input type="button" id="translate-latin" value="Translate" />
 

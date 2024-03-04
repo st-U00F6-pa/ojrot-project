@@ -1,6 +1,5 @@
 let allow_soft_sign_checkbox = document.getElementById('allow-soft-sign');
 let allow_affricate_conversion_checkbox = document.getElementById('allow-affricate-conversion');
-let allow_smart_capitalization_checkbox = document.getElementById('allow-smart-capitalization');
 
 let cyrillic_preview_checkbox = document.getElementById("cyrillic-live-preview");
 let latin_preview_checkbox = document.getElementById("latin-live-preview");
@@ -103,15 +102,9 @@ allow_affricate_conversion_checkbox.onchange = (e) => {
 	autoupdate_text();
 	click();
 }
-allow_smart_capitalization_checkbox.onchange = (e) => {
-	
-	allow_smart_capitalization = allow_smart_capitalization_checkbox.checked;
-	autoupdate_text();
-	click();
-}
 
 allow_soft_sign = allow_soft_sign_checkbox.checked;
 allow_affricate_conversion = allow_affricate_conversion_checkbox.checked;
-allow_smart_capitalization = allow_smart_capitalization_checkbox.checked;
+allow_smart_capitalization = true;
 
 toggle_buttons();
