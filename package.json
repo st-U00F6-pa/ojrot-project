@@ -1,0 +1,16 @@
+{
+  "name": "ojrot-project",
+  "version": "1.0.0",
+  "description": "Ojrot Project",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "build": {
+    "appId": "com.ojrot-project"
+  },
+  "author": "Yery Org",
+  "devDependencies": {
+    "electron": "^29.1.0"
+  }
+}
